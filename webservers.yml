@@ -1,0 +1,10 @@
+---
+ - hosts: webservers
+   become: True
+   tasks:
+     - name: Install Apache Server
+       yum: name=httpd  state=present
+     - name: Start and enable Apache on reboot
+       service: name=httpd state=started enabled=True
+     - name: Deploy application on Apache server
+       copy: src=./index.html dest=/var/www/html
