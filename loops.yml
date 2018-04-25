@@ -1,0 +1,10 @@
+---
+ - hosts: webservers
+   become: True
+   tasks:
+     - name: Install Required Packages
+       yum: name={{item}}  state=present
+       with_items:
+         - git
+         - docker
+         - curl
